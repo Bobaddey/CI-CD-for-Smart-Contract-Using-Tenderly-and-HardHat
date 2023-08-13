@@ -1,0 +1,36 @@
+name: Run tests in Tenderly Fork
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+jobs:
+  test:
+    name: Test hardhat-core on Ubuntu with Node ${{ matrix.node }}
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./ci-cd-pipeline-for-smart-contracts/smart-contract-pipeline
+    strategy:
+      matrix:
+        node: [ 16 ]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node }}
+      - uses: actions/cache@v2
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+      - name: Install
+        run: yarn install
+      - name: Run tests
+        run: yarn test
+      - name: Run test on fork
+        run: yarn test:ci
+        env:
+          JSON_RPC_URL: ${{ secrets.TENDERLY_FORK_URL }}
+
+    
