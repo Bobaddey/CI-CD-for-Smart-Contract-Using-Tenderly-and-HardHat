@@ -1,0 +1,23 @@
+// {
+//   "name": "smart_contract",
+//   "version": "1.0.0",
+//   "description": "",
+//   "main": "index.js",
+//   "scripts": {
+//     "test": "echo \"Error: no test specified\" && exit 1"
+//   },
+//   "author": "",
+//   "license": "ISC",
+//   "devDependencies": {
+//     "@nomicfoundation/hardhat-toolbox": "^3.0.0",
+//     "hardhat": "^2.17.1"
+//   }
+// }
+
+
+...
+"scripts": {
+    "test": "npx hardhat test",
+    "test:ci": "npx hardhat test --network tenderly-fork"
+},
+...
