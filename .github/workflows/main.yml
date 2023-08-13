@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./ci-cd-pipeline-for-smart-contracts/smart-contract-pipeline
+        working-directory: /
     strategy:
       matrix:
         node: [ 16 ]
